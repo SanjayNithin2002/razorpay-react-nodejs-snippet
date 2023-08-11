@@ -22,7 +22,16 @@ function App() {
     if (!res) {
       alert("Razorpay SDK failed to load")
     }
-    const data = (await fetch('http://localhost:1337/razorpay', { method: 'POST' }));
+    const data = (await fetch('https://schoolportalbackend.onrender.com/transactions/razorpay', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJzYW5qYXluaXRoaW4xMDA0IiwiX2lkIjoiNjQ2OTMxYjk0ZTA4MjQxNTI1MjFiN2I0IiwiaWF0IjoxNjkxNzQ1OTc4LCJleHAiOjE2OTE4MzIzNzh9.C0hYz5dIy90vtfVJa45GOpSwfNN7Ug_bRNKIzohtnuY'
+      },
+      body: JSON.stringify({
+        payment : '64d6147485b79d252324d35a'
+      })
+    }));
     const apiData = await data.json();
     const options = {
       "key": "rzp_test_73wohYapKBYpbR",
@@ -40,8 +49,8 @@ function App() {
       "prefill": {
         "name": "Sanjay Nithin"
       },
-      "theme" : {
-        "color" : "#000000"
+      "theme": {
+        "color": "#000000"
       }
     };
     console.log(options)

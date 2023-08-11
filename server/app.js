@@ -28,6 +28,8 @@ app.post('/verification', async (req, res) => {
 	const digest = shasum.digest('hex')
     if(digest === req.headers['x-razorpay-signature']){
         console.log('success');
+        console.log(req.body);
+        console.log(req.body.payload.payment.entity);
     }else{
         console.log('failure');
     }
